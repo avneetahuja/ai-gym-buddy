@@ -13,6 +13,7 @@ const PoseEstimation: React.FC<PoseEstimationProps> = ({ exercise, repCounts,onB
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [cameraStarted, setCameraStarted] = useState(false);
+  const [setComplete, setSetComplete] = useState(false);
 
   const { angles, stages, counts, bodyVisible, setCounts, setStages } = usePoseDetection(videoRef, canvasRef);
 
@@ -41,19 +42,29 @@ const PoseEstimation: React.FC<PoseEstimationProps> = ({ exercise, repCounts,onB
       rightShoulderRaiseStage: "down",
     });
   };
+  const handleSetComplete = () => {
+    console.log("Set Complete");
+    setSetComplete(true);
+  }
 
   return (
     <div className="flex flex-col items-center space-y-4">
-      <Display angles={angles} counts={counts} stages={stages} bodyVisible={bodyVisible} exercise={exercise} repCount={repCounts}/>
+      <Display angles={angles} counts={counts} stages={stages} bodyVisible={bodyVisible} exercise={exercise} repCount={repCounts} onSetComplete={handleSetComplete}/>
       <div className="relative">
       
         <video ref={videoRef} style={{ display: "none" }}></video>
         <canvas ref={canvasRef} width={720} height={480}></canvas>
         <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-          {!bodyVisible && (
+          {!setComplete && !bodyVisible && (
             <div className="absolute top-0 left-0 w-full h-full bg-red-500 bg-opacity-50 flex items-center justify-center">
               <span className="text-white text-4xl">Body Not Visible</span>
             </div>
+          )}
+          {setComplete && (
+            <div className="absolute top-0 left-0 w-full h-full bg-green-500 bg-opacity-50 flex items-center justify-center">
+              <span className="text-white text-4xl">Set Complete</span>
+            </div>
+          
           )}
         </div>
       </div>
