@@ -50,7 +50,7 @@ const PoseEstimation: React.FC<PoseEstimationProps> = ({ exercise, repCounts, on
 
   const isMobile = window.innerWidth <= 768;
   const videoWidth = isMobile ? 360 : 720;
-  const videoHeight = isMobile ? 640 : 480;
+  const videoHeight = isMobile ? 600 : 480;
 
   return (
     <div className="flex flex-col items-center space-y-4">
@@ -81,10 +81,10 @@ const PoseEstimation: React.FC<PoseEstimationProps> = ({ exercise, repCounts, on
         </div>
       </div>
       <div className="px-6 space-x-6">
-        <button className="bg-red-500 text-white p-4 rounded-full px-10" onClick={handleReset}>
+        <button className={`bg-red-500 text-white p-4 rounded-full px-10 ${isMobile? "text-lg":""}`} onClick={handleReset}>
           Reset
         </button>
-        <button className="bg-yellow-500 text-black p-4 rounded-full px-10" onClick={onBack}>
+        <button className={`bg-yellow-500 text-black p-4 rounded-full px-10 ${isMobile? "text-lg":""}`} onClick={onBack}>
           Back
         </button>
       </div>

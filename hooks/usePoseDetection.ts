@@ -178,7 +178,7 @@ const usePoseDetection = (
           await pose.send({ image: videoElement });
         },
         width: isMobile ? 360 : 1280,
-        height: isMobile ? 640 : 720,
+        height: isMobile ? 600 : 720,
       });
 
       camera.start();
