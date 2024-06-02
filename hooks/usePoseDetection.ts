@@ -61,7 +61,7 @@ const usePoseDetection = (videoRef: React.RefObject<HTMLVideoElement>, canvasRef
 
         if (
           [leftShoulder, leftElbow, leftWrist, rightShoulder, rightElbow, rightWrist, leftHip, rightHip].every(
-            (landmark) => landmark && landmark.visibility > 0.5
+            (landmark) => landmark && (landmark.visibility?? 1 > 0.5)
           )
         ) {
           setAngles({
