@@ -41,6 +41,7 @@ const PoseEstimation: React.FC<PoseEstimationProps> = ({ exercise, repCounts,onB
       leftShoulderRaiseStage: "down",
       rightShoulderRaiseStage: "down",
     });
+    setSetComplete(false);
   };
   const handleSetComplete = () => {
     console.log("Set Complete");
