@@ -51,7 +51,7 @@ const Display: React.FC<DisplayProps> = ({
         <h1 className="text-4xl text-white">{exercise}</h1>
       </div>
 
-      <div className={`flex justify-between px-4 text-white w-${isMobile? "[720px]" : "[360px]"}`}>
+      <div className={`flex justify-between px-4 text-white w-${isMobile? "[360px]" : "[720px]"}`}>
         <div className="flex flex-col items-center space-y-2">
           <h1 className="text-lg bg-yellow-500 text-black px-4">
             Left Count: {leftCount > repCount ? repCount : leftCount}/{repCount}
