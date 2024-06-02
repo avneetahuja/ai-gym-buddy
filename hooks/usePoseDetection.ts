@@ -144,7 +144,6 @@ const usePoseDetection = (
       } else {
         setBodyVisible(false);
       }
-      console.log(bodyVisible);
       canvasCtx.restore();
     }
   };
