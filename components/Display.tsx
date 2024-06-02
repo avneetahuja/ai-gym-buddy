@@ -1,3 +1,4 @@
+// src/components/Display.tsx
 import React from "react";
 
 interface DisplayProps {
@@ -5,35 +6,37 @@ interface DisplayProps {
   counts: { [key: string]: number };
   stages: { [key: string]: string };
   bodyVisible: boolean;
+  exercise: string;
+  repCount: number;
 }
 
-const Display: React.FC<DisplayProps> = ({ angles, counts, stages, bodyVisible }) => {
+const exerciseCountMap: { [key: string]: { left: string; right: string } } = {
+  "Bicep Curl": { left: "leftCurlCount", right: "rightCurlCount" },
+  "Shoulder Press": { left: "leftShoulderRaiseCount", right: "rightShoulderRaiseCount" },
+  "Lateral Raises": { left: "leftLateralRaiseCount", right: "rightLateralRaiseCount" },
+};
+
+const Display: React.FC<DisplayProps> = ({ counts, bodyVisible, exercise, repCount }) => {
+  const leftCountKey = exerciseCountMap[exercise]?.left;
+  const rightCountKey = exerciseCountMap[exercise]?.right;
+
   return (
     <div>
-      {bodyVisible ? (
-        <div>
-          <h1>Left Angle: {angles.leftCurlAngle.toFixed(2)}</h1>
-          <h1>Right Angle: {angles.rightCurlAngle.toFixed(2)}</h1>
-          <h1>Left Count: {counts.leftCurlCount}</h1>
-          <h1>Right Count: {counts.rightCurlCount}</h1>
-          <h1>Left Stage: {stages.leftCurlStage}</h1>
-          <h1>Right Stage: {stages.rightCurlStage}</h1>
-          <h1>Left Lateral Raise Angle: {angles.leftLateralRaiseAngle.toFixed(2)}</h1>
-          <h1>Right Lateral Raise Angle: {angles.rightLateralRaiseAngle.toFixed(2)}</h1>
-          <h1>Left Lateral Raise Count: {counts.leftLateralRaiseCount}</h1>
-          <h1>Right Lateral Raise Count: {counts.rightLateralRaiseCount}</h1>
-          <h1>Left Lateral Raise Stage: {stages.leftLateralRaiseStage}</h1>
-          <h1>Right Lateral Raise Stage: {stages.rightLateralRaiseStage}</h1>
-          <h1>Left Shoulder Raise Count: {counts.leftShoulderRaiseCount}</h1>
-          <h1>Right Shoulder Raise Count: {counts.rightShoulderRaiseCount}</h1>
-          <h1>Left Shoulder Raise Stage: {stages.leftShoulderRaiseStage}</h1>
-          <h1>Right Shoulder Raise Stage: {stages.rightShoulderRaiseStage}</h1>
+      <div className="flex justify-center items-center mb-4">
+        <h1 className="text-4xl text-white">{exercise}</h1>
+      </div>
+      <div className="flex justify-between w-[720px] px-4 text-white">
+        <div className="flex flex-col items-center space-y-2">
+          <h1 className="text-lg bg-yellow-500 text-black px-4">
+            Left Count: {counts[leftCountKey]}/{repCount}
+          </h1>
         </div>
-      ) : (
-        <div>
-          <h1>Body Not Visible</h1>
+        <div className="flex flex-col items-center space-y-2">
+          <h1 className="text-lg bg-yellow-500 text-black px-4">
+            Right Count: {counts[rightCountKey]}/{repCount}
+          </h1>
         </div>
-      )}
+      </div>
     </div>
   );
 };
