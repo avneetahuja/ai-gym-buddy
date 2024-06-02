@@ -49,8 +49,8 @@ const PoseEstimation: React.FC<PoseEstimationProps> = ({ exercise, repCounts, on
   };
 
   const isMobile = window.innerWidth <= 768;
-  const videoWidth = isMobile ? 360 : 720;
-  const videoHeight = isMobile ? 600 : 480;
+  const videoWidth = isMobile ? window.innerWidth : 720;
+  const videoHeight = isMobile ? window.innerHeight*5/8 : 480;
 
   return (
     <div className="flex flex-col items-center space-y-4">
