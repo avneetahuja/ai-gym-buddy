@@ -149,6 +149,8 @@ const usePoseDetection = (
   };
 
   useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+
     const pose = new Pose({
       locateFile: (file) =>
         `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`,
@@ -175,8 +177,8 @@ const usePoseDetection = (
         onFrame: async () => {
           await pose.send({ image: videoElement });
         },
-        width: 1280,
-        height: 720,
+        width: isMobile ? 360 : 1280,
+        height: isMobile ? 640 : 720,
       });
 
       camera.start();
