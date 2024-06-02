@@ -62,6 +62,7 @@ const PoseEstimation: React.FC<PoseEstimationProps> = ({ exercise, repCounts, on
         exercise={exercise}
         repCount={repCounts}
         onSetComplete={handleSetComplete}
+        isMobile={isMobile}
       />
       <div className="relative">
         <video ref={videoRef} style={{ display: "none" }}></video>
